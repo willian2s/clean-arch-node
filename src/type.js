@@ -4,7 +4,7 @@
  * @property {Date} created_at
  * @property {Date} updated_at
  *
- * @typedef {Object} HttpResponse
+ * @typedef {Object} HttpResponseType
  * @property {object} HttpResponse.body
  * @property {number} HttpResponse.statusCode
  */
