@@ -11,4 +11,4 @@ const config = {
   testEnvironment: 'node'
 }
 
-module.exports = config
+export default config
