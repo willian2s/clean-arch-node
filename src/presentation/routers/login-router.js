@@ -9,7 +9,6 @@ const HttpResponse = require('../helpers/http-response')
  */
 class LoginRouter {
   /**
-
    *
    * @param {LoginRequest} httpRequest
    * @returns {object}
