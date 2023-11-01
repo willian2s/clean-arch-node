@@ -7,6 +7,10 @@ const HttpResponse = require('../helpers/http-response')
  * @property {string} LoginRequest.body.email
  * @property {string} LoginRequest.body.password
  *
+ * @typedef {object} LoginResponse
+ * @property {object} LoginResponse.body
+ * @property {number} LoginResponse.statusCode
+ *
  * @typedef {object} AuthUseCase
  * @property {(email: string) => void} AuthUseCase.auth
  *
@@ -25,7 +29,7 @@ class LoginRouter {
   /**
    *
    * @param {LoginRequest} httpRequest
-   * @returns {object}
+   * @returns {LoginResponse}
    */
   route (httpRequest) {
     if (!httpRequest || !httpRequest.body) {
@@ -40,6 +44,9 @@ class LoginRouter {
     }
 
     this.authUseCase.auth(email, password)
+    return {
+      statusCode: 401
+    }
   }
 }
 
