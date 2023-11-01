@@ -17,9 +17,18 @@
   "lint-staged": {
     "*.js": [
       "standard --fix",
-      "npm run test:staged",
-      "git add"
+      "npm run test:staged"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
   },
   "keywords": [],
   "author": "Willian Silva",
@@ -31,6 +40,10 @@
     "standard": "^17.1.0"
   },
   "dependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "express": "^4.18.2",
     "mongoose": "^8.0.0"
   }
