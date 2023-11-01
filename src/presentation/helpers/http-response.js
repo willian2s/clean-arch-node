@@ -1,4 +1,5 @@
 const MissingParamError = require('./missing-param-error')
+const UnauthorizedError = require('./unauthorized-error copy')
 
 /**
  *
@@ -26,6 +27,17 @@ class HttpResponse {
   static internalServerError () {
     return {
       statusCode: 500
+    }
+  }
+
+  /**
+   *
+   * @returns {ErrorResponse}
+   */
+  static unauthorizedError () {
+    return {
+      statusCode: 401,
+      body: new UnauthorizedError()
     }
   }
 }
