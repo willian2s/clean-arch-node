@@ -1,0 +1,16 @@
+{
+  "name": "clean-arch-node",
+  "version": "1.0.0",
+  "description": "Respository focused on the clean arch course in nodejs by Rodrigo Manguinho",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "20.9."
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Willian Silva",
+  "license": "MIT"
+}
