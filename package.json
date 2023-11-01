@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Respository focused on the clean arch course in nodejs by Rodrigo Manguinho",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest --watch-all",
     "test:staged": "jest --passWithNoTests",
@@ -43,8 +42,6 @@
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "cz-conventional-changelog": "^3.3.0"
   }
 }
