@@ -1,16 +1,16 @@
-import LoginRouter from './login-router'
-import MissingParamError from '../helpers/missing-param-error'
-import InvalidParamError from '../helpers/invalid-param-error'
-import UnauthorizedError from '../helpers/unauthorized-error'
-import InternalServerError from '../helpers/internal-server-error'
+import { LoginRouter } from './login-router'
+
+import {
+  InternalServerError,
+  UnauthorizedError,
+  InvalidParamError,
+  MissingParamError
+} from '../errors'
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
   const emailValidatorSpy = makeEmailValidator()
-  const sut = new LoginRouter(
-    authUseCaseSpy,
-    emailValidatorSpy
-  )
+  const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
 
   return {
     sut,
@@ -233,10 +233,7 @@ describe('Login Router', () => {
   test('Should return 500 if no EmailValidator has no isValid method', async () => {
     class EmailValidatorSpy {}
     const authUseCaseSpy = makeAuthUseCase()
-    const sut = new LoginRouter(
-      authUseCaseSpy,
-      EmailValidatorSpy
-    )
+    const sut = new LoginRouter(authUseCaseSpy, EmailValidatorSpy)
 
     const httpRequest = {
       body: {
@@ -252,10 +249,7 @@ describe('Login Router', () => {
   test('Should return 500 if EmailValidator throws', async () => {
     const authUseCaseSpy = makeAuthUseCase()
     const emailValidatorSpy = makeEmailValidatorWithError()
-    const sut = new LoginRouter(
-      authUseCaseSpy,
-      emailValidatorSpy
-    )
+    const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
     const httpRequest = {
       body: {
         email: 'any@mail.com',

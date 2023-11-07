@@ -1,6 +1,8 @@
-import HttpResponse from '../helpers/http-response'
-import InvalidParamError from '../helpers/invalid-param-error'
-import MissingParamError from '../helpers/missing-param-error'
+import { HttpResponse } from '../helpers/http-response'
+import {
+  InvalidParamError,
+  MissingParamError
+} from '../errors'
 
 /**
  *
@@ -20,7 +22,7 @@ import MissingParamError from '../helpers/missing-param-error'
  * @property {(email: string) => boolean} EmailValidator.isValid
  *
  */
-class LoginRouter {
+export class LoginRouter {
   /**
    *
    * @param {AuthUseCase} authUseCase
@@ -61,5 +63,3 @@ class LoginRouter {
     }
   }
 }
-
-export default LoginRouter

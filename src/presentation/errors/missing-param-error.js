@@ -1,4 +1,4 @@
-class MissingParamError extends Error {
+export class MissingParamError extends Error {
   /**
    *
    * @param {string} paramName
@@ -8,5 +8,3 @@ class MissingParamError extends Error {
     this.name = 'MissingParamError'
   }
 }
-
-export default MissingParamError

@@ -1,4 +1,4 @@
-class InvalidParamError extends Error {
+export class InvalidParamError extends Error {
   /**
    *
    * @param {string} paramName
@@ -8,5 +8,3 @@ class InvalidParamError extends Error {
     this.name = 'InvalidParamError'
   }
 }
-
-export default InvalidParamError

@@ -1,5 +1,4 @@
-import InternalServerError from './internal-server-error'
-import UnauthorizedError from './unauthorized-error'
+import { InternalServerError, UnauthorizedError } from '../errors'
 
 /**
  *
@@ -7,7 +6,7 @@ import UnauthorizedError from './unauthorized-error'
  * @property {Error} ErrorResponse.body
  * @property {number} ErrorResponse.statusCode
  */
-class HttpResponse {
+export class HttpResponse {
   /**
    *
    * @param {string} paramName
@@ -54,5 +53,3 @@ class HttpResponse {
     }
   }
 }
-
-export default HttpResponse
