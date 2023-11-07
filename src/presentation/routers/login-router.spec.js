@@ -1,11 +1,10 @@
-import { LoginRouter } from './login-router'
-
-import {
+const LoginRouter = require('./login-router')
+const {
   InternalServerError,
   UnauthorizedError,
   InvalidParamError,
   MissingParamError
-} from '../errors'
+} = require('../errors')
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()

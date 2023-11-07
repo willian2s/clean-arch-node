@@ -1,8 +1,8 @@
-import { HttpResponse } from '../helpers/http-response'
-import {
+const {
   InvalidParamError,
   MissingParamError
-} from '../errors'
+} = require('../errors')
+const HttpResponse = require('../helpers/http-response')
 
 /**
  *
@@ -22,7 +22,7 @@ import {
  * @property {(email: string) => boolean} EmailValidator.isValid
  *
  */
-export class LoginRouter {
+class LoginRouter {
   /**
    *
    * @param {AuthUseCase} authUseCase
@@ -63,3 +63,5 @@ export class LoginRouter {
     }
   }
 }
+
+module.exports = LoginRouter

@@ -1,9 +1,9 @@
-import { MissingParamError } from '../errors/missing-param-error'
-import { InvalidParamError } from '../errors/invalid-param-error'
-import { UnauthorizedError } from '../errors/unauthorized-error'
-import { InternalServerError } from '../errors/internal-server-error'
+const MissingParamError = require('./missing-param-error')
+const InternalServerError = require('./internal-server-error')
+const InvalidParamError = require('./invalid-param-error')
+const UnauthorizedError = require('./unauthorized-error')
 
-export {
+module.exports = {
   MissingParamError,
   InvalidParamError,
   UnauthorizedError,

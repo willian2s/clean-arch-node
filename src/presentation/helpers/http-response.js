@@ -1,4 +1,4 @@
-import { InternalServerError, UnauthorizedError } from '../errors'
+const { InternalServerError, UnauthorizedError } = require('../errors')
 
 /**
  *
@@ -6,10 +6,10 @@ import { InternalServerError, UnauthorizedError } from '../errors'
  * @property {Error} ErrorResponse.body
  * @property {number} ErrorResponse.statusCode
  */
-export class HttpResponse {
+class HttpResponse {
   /**
    *
-   * @param {string} paramName
+   * @param {Error} error
    * @returns {ErrorResponse}
    */
   static badRequest (error) {
@@ -43,7 +43,7 @@ export class HttpResponse {
 
   /**
    *
-   * @param {object} data
+   * @param {Record<string, unknown>} data
    * @returns {ErrorResponse}
    */
   static ok (data) {
@@ -53,3 +53,5 @@ export class HttpResponse {
     }
   }
 }
+
+module.exports = HttpResponse

@@ -1,3 +1,5 @@
+const validator = require('validator')
+
 class EmailValidator {
   /**
    *
@@ -5,7 +7,7 @@ class EmailValidator {
    * @returns {boolean}
    */
   isValid (email) {
-    return true
+    return validator.isEmail(email)
   }
 }
 
