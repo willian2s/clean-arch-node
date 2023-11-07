@@ -14,15 +14,13 @@ import HttpResponse from '../helpers/http-response'
  * @typedef {object} AuthUseCase
  * @property {(email: string) => void} AuthUseCase.auth
  *
- * @typedef {object} Dependecies
- * @property {AuthUseCase} Dependecies.authUseCase
  */
 class LoginRouter {
   /**
    *
-   * @param {Dependecies} dependecies
+   * @param {AuthUseCase} authUseCase
    */
-  constructor ({ authUseCase }) {
+  constructor (authUseCase) {
     this.authUseCase = authUseCase
   }
 
@@ -32,7 +30,7 @@ class LoginRouter {
    * @returns {LoginResponse}
    */
   route (httpRequest) {
-    if (!httpRequest || !httpRequest.body) {
+    if (!httpRequest || !httpRequest.body || !this.authUseCase || !this.authUseCase.auth) {
       return HttpResponse.internalServerError()
     }
     const { email, password } = httpRequest.body
