@@ -1,5 +1,5 @@
-const MissingParamError = require('./missing-param-error')
-const UnauthorizedError = require('./unauthorized-error copy')
+import MissingParamError from './missing-param-error.js'
+import UnauthorizedError from './unauthorized-error.js'
 
 /**
  *
@@ -42,4 +42,4 @@ class HttpResponse {
   }
 }
 
-module.exports = HttpResponse
+export default HttpResponse
