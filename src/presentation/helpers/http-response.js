@@ -1,3 +1,4 @@
+import InternalServerError from './internal-server-error'
 import MissingParamError from './missing-param-error'
 import UnauthorizedError from './unauthorized-error'
 
@@ -26,7 +27,8 @@ class HttpResponse {
    */
   static internalServerError () {
     return {
-      statusCode: 500
+      statusCode: 500,
+      body: new InternalServerError()
     }
   }
 

@@ -1,9 +1,21 @@
 import LoginRouter from './login-router'
 import MissingParamError from '../helpers/missing-param-error'
 import UnauthorizedError from '../helpers/unauthorized-error'
+import InternalServerError from '../helpers/internal-server-error'
 
 const makeSut = () => {
-  class AuthUseCase {
+  const authUseCaseSpy = makeAuthUseCase()
+  authUseCaseSpy.accessToken = 'valid_token'
+  const sut = new LoginRouter(authUseCaseSpy)
+
+  return {
+    sut,
+    authUseCaseSpy
+  }
+}
+
+const makeAuthUseCase = () => {
+  class AuthUseCaseSpy {
     accessToken = null
     /**
      *
@@ -18,14 +30,18 @@ const makeSut = () => {
       return this.accessToken
     }
   }
-  const authUseCaseSpy = new AuthUseCase()
-  authUseCaseSpy.accessToken = 'valid_token'
-  const sut = new LoginRouter(authUseCaseSpy)
 
-  return {
-    sut,
-    authUseCaseSpy
+  return new AuthUseCaseSpy()
+}
+
+const makeAuthUseCaseWithError = () => {
+  class AuthUseCaseSpy {
+    auth () {
+      throw new Error()
+    }
   }
+
+  return new AuthUseCaseSpy()
 }
 
 describe('Login Router', () => {
@@ -57,6 +73,7 @@ describe('Login Router', () => {
     const { sut } = makeSut()
     const httpResponse = sut.route()
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
   })
 
   test('Should returs 500 if httpRequest has no body', () => {
@@ -64,6 +81,7 @@ describe('Login Router', () => {
     const httpRequest = {}
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
   })
 
   test('Should call AuthUseCase with correct params', () => {
@@ -116,12 +134,27 @@ describe('Login Router', () => {
     }
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
   })
 
   test('Should return 500 if no AuthUseCase has no auth', () => {
     class AuthUseCase {}
     const authUseCase = new AuthUseCase()
     const sut = new LoginRouter(authUseCase)
+    const httpRequest = {
+      body: {
+        email: 'any@mail.com',
+        password: 'anyPassword'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
+  })
+
+  test('Should return 500 if AuthUseCase throws', () => {
+    const authUseCaseSpy = makeAuthUseCaseWithError()
+    const sut = new LoginRouter(authUseCaseSpy)
     const httpRequest = {
       body: {
         email: 'any@mail.com',
