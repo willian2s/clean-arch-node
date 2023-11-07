@@ -1,4 +1,4 @@
-import HttpResponse from '../helpers/http-response.js'
+import HttpResponse from '../helpers/http-response'
 
 /**
  *

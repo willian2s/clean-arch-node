@@ -1,5 +1,5 @@
-import MissingParamError from './missing-param-error.js'
-import UnauthorizedError from './unauthorized-error.js'
+import MissingParamError from './missing-param-error'
+import UnauthorizedError from './unauthorized-error'
 
 /**
  *
