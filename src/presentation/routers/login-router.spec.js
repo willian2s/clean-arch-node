@@ -7,7 +7,10 @@ import InternalServerError from '../helpers/internal-server-error'
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()
   const emailValidatorSpy = makeEmailValidator()
-  const sut = new LoginRouter(authUseCaseSpy, emailValidatorSpy)
+  const sut = new LoginRouter(
+    authUseCaseSpy,
+    emailValidatorSpy
+  )
 
   return {
     sut,
@@ -199,5 +202,38 @@ describe('Login Router', () => {
     const httpResponse = await sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new InvalidParamError('email'))
+  })
+
+  test('Should return 500 if no EmailValidator is provided', async () => {
+    const authUseCaseSpy = makeAuthUseCase()
+    const sut = new LoginRouter(authUseCaseSpy)
+    const httpRequest = {
+      body: {
+        email: 'any@mail.com',
+        password: 'anyPassword'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
+  })
+
+  test('Should return 500 if no EmailValidator has no isValid method', async () => {
+    class EmailValidatorSpy {}
+    const authUseCaseSpy = makeAuthUseCase()
+    const sut = new LoginRouter(
+      authUseCaseSpy,
+      EmailValidatorSpy
+    )
+
+    const httpRequest = {
+      body: {
+        email: 'any@mail.com',
+        password: 'anyPassword'
+      }
+    }
+    const httpResponse = await sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new InternalServerError())
   })
 })
