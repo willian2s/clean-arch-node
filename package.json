@@ -7,7 +7,7 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll --silent --colors --noStackTrace",
     "test:staged": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
-    "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --noStackTrace",
+    "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --noStackTrace --silent",
     "prepare": "husky install"
   },
   "standard": {
