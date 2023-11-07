@@ -1,4 +1,4 @@
-const HttpResponse = require('../helpers/http-response')
+import HttpResponse from '../helpers/http-response.js'
 
 /**
  *
@@ -48,4 +48,4 @@ class LoginRouter {
   }
 }
 
-module.exports = LoginRouter
+export default LoginRouter

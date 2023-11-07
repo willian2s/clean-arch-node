@@ -8,7 +8,8 @@ const config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  transform: {}
 }
 
-module.exports = config
+export default config

@@ -1,6 +1,6 @@
-const LoginRouter = require('./login-router')
-const MissingParamError = require('../helpers/missing-param-error')
-const UnauthorizedError = require('../helpers/unauthorized-error copy')
+import LoginRouter from './login-router'
+import MissingParamError from '../helpers/missing-param-error'
+import UnauthorizedError from '../helpers/unauthorized-error'
 
 const makeSut = () => {
   class AuthUseCase {

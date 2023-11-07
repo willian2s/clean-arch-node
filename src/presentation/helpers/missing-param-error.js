@@ -9,4 +9,4 @@ class MissingParamError extends Error {
   }
 }
 
-module.exports = MissingParamError
+export default MissingParamError
