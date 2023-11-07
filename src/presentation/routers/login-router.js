@@ -56,6 +56,7 @@ class LoginRouter {
 
       return HttpResponse.ok({ accessToken })
     } catch (err) {
+      console.error(err)
       return HttpResponse.internalServerError()
     }
   }
