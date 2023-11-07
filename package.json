@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll --silent --colors --noStackTrace",
-    "test:staged": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
-    "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --noStackTrace --silent",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --silent --noStackTrace --passWithNoTests --colors",
+    "test:unit": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage"
   },
   "standard": {
     "env": [
@@ -35,15 +36,13 @@
   "author": "Willian Silva",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "lint-staged": "^15.0.2",
     "standard": "^17.1.0"
-  },
-  "dependencies": {
-    "@commitlint/cli": "^18.2.0",
-    "@commitlint/config-conventional": "^18.1.0",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0"
   }
 }
