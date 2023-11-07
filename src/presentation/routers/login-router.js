@@ -12,7 +12,7 @@ import HttpResponse from '../helpers/http-response'
  * @property {number} LoginResponse.statusCode
  *
  * @typedef {object} AuthUseCase
- * @property {(email: string) => void} AuthUseCase.auth
+ * @property {(email: string, password: string) => string} AuthUseCase.auth
  *
  */
 class LoginRouter {
@@ -41,8 +41,12 @@ class LoginRouter {
       return HttpResponse.badRequest('password')
     }
 
-    this.authUseCase.auth(email, password)
-    return HttpResponse.unauthorizedError()
+    const accessToken = this.authUseCase.auth(email, password)
+    if (!accessToken) {
+      return HttpResponse.unauthorizedError()
+    }
+
+    return HttpResponse.ok()
   }
 }
 

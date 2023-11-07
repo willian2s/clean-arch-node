@@ -40,6 +40,16 @@ class HttpResponse {
       body: new UnauthorizedError()
     }
   }
+
+  /**
+   *
+   * @returns {ErrorResponse}
+   */
+  static ok () {
+    return {
+      statusCode: 200
+    }
+  }
 }
 
 export default HttpResponse
