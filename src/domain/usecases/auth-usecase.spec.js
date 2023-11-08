@@ -17,6 +17,7 @@ const makeEncrypterSpy = () => {
   class EncrypterSpy {
     password = null
     hashedPassword = null
+    isValid = null
     /**
      *
      * @param {string} password
@@ -26,10 +27,14 @@ const makeEncrypterSpy = () => {
     async compare (password, hashedPassword) {
       this.password = password
       this.hashedPassword = hashedPassword
+      return this.isValid
     }
   }
 
-  return new EncrypterSpy()
+  const encrypterSpy = new EncrypterSpy()
+  encrypterSpy.isValid = true
+
+  return encrypterSpy
 }
 
 const makeLoadUserByEmailRepositorySpy = () => {
@@ -95,7 +100,8 @@ describe('AuthUseCase', () => {
   })
 
   test('Should return null if an invalid password is provided', async () => {
-    const { sut } = makeSut()
+    const { sut, encrypterSpy } = makeSut()
+    encrypterSpy.isValid = false
     const accessToken = await sut.auth('valid@email.com', 'invalidPassword')
     expect(accessToken).toBeNull()
   })
