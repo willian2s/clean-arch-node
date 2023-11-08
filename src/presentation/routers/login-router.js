@@ -1,7 +1,7 @@
 const {
   InvalidParamError,
   MissingParamError
-} = require('../errors')
+} = require('../../utils/errors')
 const HttpResponse = require('../helpers/http-response')
 
 /**
