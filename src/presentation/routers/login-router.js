@@ -16,7 +16,7 @@ const HttpResponse = require('../helpers/http-response')
  * @property {number} LoginResponse.statusCode
  *
  * @typedef {object} AuthUseCase
- * @property {(email: string, password: string) => string} AuthUseCase.auth
+ * @property {(email: string, password: string) => Promise<any>} AuthUseCase.auth
  *
  * @typedef {object} EmailValidator
  * @property {(email: string) => boolean} EmailValidator.isValid
@@ -36,7 +36,7 @@ class LoginRouter {
   /**
    *
    * @param {LoginRequest} httpRequest
-   * @returns {LoginResponse}
+   * @returns {Promise<LoginResponse>}
    */
   async route (httpRequest) {
     try {

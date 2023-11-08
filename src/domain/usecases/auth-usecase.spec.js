@@ -19,7 +19,7 @@ class AuthUseCase {
    *
    * @param {string} email
    * @param {string} password
-   * @returns {string}
+   * @returns {Promise<any>}
    */
   async auth (email, password) {
     if (!email) {
