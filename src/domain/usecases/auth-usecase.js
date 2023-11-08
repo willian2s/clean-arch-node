@@ -7,16 +7,21 @@ const { MissingParamError } = require('../../utils/errors')
  *
  * @typedef {object} Encrypter
  * @property {(password: string, hashedPassword: string) => Promise<string>} Encrypter.compare
+ * @typedef {object} TokenGenerator
+ * @property {(userId: string) => Promise<any>} TokenGenerator.generate
+ *
  */
 class AuthUseCase {
   /**
    *
    * @param {LoadUserByEmailRepository} loadUserByEmailRepository
    * @param {Encrypter} encrypter
+   * @param {TokenGenerator} tokenGenerator
    */
-  constructor (loadUserByEmailRepository, encrypter) {
+  constructor (loadUserByEmailRepository, encrypter, tokenGenerator) {
     this.loadUserByEmailRepository = loadUserByEmailRepository
     this.encrypter = encrypter
+    this.tokenGenerator = tokenGenerator
   }
 
   /**
@@ -37,10 +42,13 @@ class AuthUseCase {
     if (!user) {
       return null
     }
+
     const isValid = await this.encrypter.compare(password, user.password)
     if (!isValid) {
       return null
     }
+
+    await this.tokenGenerator.generate(user.id)
   }
 }
 
