@@ -11,16 +11,20 @@ class EmailValidator {
   }
 }
 
+const makeSut = () => {
+  return new EmailValidator()
+}
+
 describe('Email Validator', () => {
   test('Should return true with validator returns true', () => {
-    const sut = new EmailValidator()
+    const sut = makeSut()
     const isValid = sut.isValid('valid@mail.com')
 
     expect(isValid).toBe(true)
   })
 
   test('Should return false with validator returns false', () => {
-    const sut = new EmailValidator()
+    const sut = makeSut()
     validator.isValid = false
     const isValid = sut.isValid('invalid@mail.com')
 
