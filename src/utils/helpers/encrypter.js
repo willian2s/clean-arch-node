@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const { MissingParamError } = require('../errors')
 
 class Encrypter {
   /**
@@ -8,6 +9,12 @@ class Encrypter {
    * @returns {Promise<boolean>}
    */
   async compare (data, encrypted) {
+    if (!data) {
+      throw new MissingParamError('data')
+    }
+    if (!encrypted) {
+      throw new MissingParamError('encrypted')
+    }
     const isValid = await bcrypt.compare(data, encrypted)
     return isValid
   }
