@@ -26,4 +26,11 @@ describe('Encrypter', () => {
     const isValid = await sut.compare('any_data', 'hashed_data')
     expect(isValid).toBe(false)
   })
+
+  test('Should call bcrypt with correct params', async () => {
+    const sut = new Encrypter()
+    await sut.compare('any_data', 'hashed_data')
+    expect(bcrypt.data).toBe('any_data')
+    expect(bcrypt.encrypted).toBe('hashed_data')
+  })
 })
