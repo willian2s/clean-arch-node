@@ -27,15 +27,9 @@ describe('Encrypter', () => {
     expect(bcrypt.encrypted).toBe('hashed_data')
   })
 
-  test('Should throw if no data are provided', async () => {
+  test('Should throw if no params are provided', async () => {
     const sut = makeSut()
-    const promise = sut.compare()
-    expect(promise).rejects.toThrow(new MissingParamError('data'))
-  })
-
-  test('Should throw if no encrypted are provided', async () => {
-    const sut = makeSut()
-    const promise = sut.compare('any_data')
-    expect(promise).rejects.toThrow(new MissingParamError('encrypted'))
+    expect(sut.compare()).rejects.toThrow(new MissingParamError('data'))
+    expect(sut.compare('any_data')).rejects.toThrow(new MissingParamError('encrypted'))
   })
 })

@@ -1,4 +1,5 @@
 const validator = require('validator')
+const { MissingParamError } = require('../errors')
 
 class EmailValidator {
   /**
@@ -7,6 +8,9 @@ class EmailValidator {
    * @returns {boolean}
    */
   isValid (email) {
+    if (!email) {
+      throw new MissingParamError('email')
+    }
     return validator.isEmail(email)
   }
 }
