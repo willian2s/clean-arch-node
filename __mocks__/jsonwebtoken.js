@@ -1,5 +1,7 @@
 class Jsonwebtoken {
+  id = null
   token = 'any_token'
+  secret = null
 
   /**
    *
@@ -9,6 +11,9 @@ class Jsonwebtoken {
    * @returns {string}
    */
   sign (id, secret, options) {
+    this.id = id
+    this.secret = secret
+
     return this.token
   }
 }
